@@ -544,7 +544,7 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Category: Schema.Attribute.Enumeration<
-      ['Language', 'Framework', 'Tool', 'Security']
+      ['Language', 'Framework', 'Tool', 'Security', 'DevOps', 'Databases']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
