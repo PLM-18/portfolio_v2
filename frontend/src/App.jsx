@@ -11,22 +11,21 @@ const dummyProjects = [
 
 function App() {
   return (
-    // Added a dark background that matches your Navbar theme
     <div className="min-h-screen bg-[#0d1117] text-gray-300 font-sans">
       <Navbar />
-      
-      {/* Hero Section - Takes up full viewport height so you have to scroll down */}
+
+
       <main className="flex flex-col items-center justify-center min-h-screen px-6 pt-14 text-center">
         <h1 className="text-5xl font-light mb-4 text-white">
-          Connecting the dots. <br/>
-          <span className="font-bold text-[#5a8fb4]">It's what we do.</span>
+          Philemon Muleya. <br />
+          <span className="font-bold text-[#5a8fb4]">Aspiring Software Engineer.</span>
         </h1>
         <p className="max-w-xl text-gray-400">
           Scroll down to see the projects load in using the Intersection Observer API.
         </p>
       </main>
 
-      {/* Projects Section */}
+
       <section className="max-w-4xl mx-auto px-6 py-24 space-y-32">
         {dummyProjects.map((project) => (
           <ScrollReveal key={project.id}>
@@ -41,7 +40,7 @@ function App() {
         ))}
       </section>
 
-      {/* Spacer to allow scrolling past the last item */}
+
       <div className="h-64"></div>
     </div>
   )

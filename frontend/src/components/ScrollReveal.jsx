@@ -5,19 +5,18 @@ const ScrollReveal = ({ children }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    // The Intersection Observer detects when the element enters the screen
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Unobserve after it becomes visible so it only animates once
+          
           observer.unobserve(entry.target); 
         }
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15, // Triggers when 15% of the element is visible
+        threshold: 0.15, 
       }
     );
 
@@ -33,7 +32,7 @@ const ScrollReveal = ({ children }) => {
   return (
     <div
       ref={ref}
-      // Tailwind classes handle the transition smoothly
+      
       className={`transition-all duration-1000 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-24'
       }`}
