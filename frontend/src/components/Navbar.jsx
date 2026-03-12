@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-const languages = ['EN', 'FR', 'DE', 'ES', 'ZU']
+const languages = ['EN', 'AF', 'ES']
 
 const coolStuffLinks = [
   { label: 'Side Projects', href: '#' },
@@ -18,7 +18,6 @@ function Navbar() {
   const coolStuffRef = useRef(null)
   const langRef = useRef(null)
 
-  // Close dropdowns on outside click
   useEffect(() => {
     function handleClick(e) {
       if (coolStuffRef.current && !coolStuffRef.current.contains(e.target)) {
@@ -34,7 +33,6 @@ function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d1117] h-14 flex items-center justify-between px-6 shadow-lg select-none">
-      {/* Left: Name Logo */}
       <div className="flex items-center gap-8">
         <a href="/" className="flex items-baseline text-2xl font-light tracking-wide leading-none">
           <span className="text-[#2b5c8a] font-light">Phile</span>
@@ -42,7 +40,6 @@ function Navbar() {
           <span className="text-[#2b5c8a] text-lg font-bold ml-0">.</span>
         </a>
 
-        {/* Cool Stuff Dropdown */}
         <div className="relative" ref={coolStuffRef}>
           <button
             onClick={() => setCoolStuffOpen(!coolStuffOpen)}
@@ -70,15 +67,12 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Right: Language Switch + Contact */}
       <div className="flex items-center gap-5">
-        {/* Language Switcher */}
         <div className="relative" ref={langRef}>
           <button
             onClick={() => setLangOpen(!langOpen)}
             className="flex items-center gap-2 text-gray-300 hover:text-white text-sm transition-colors cursor-pointer"
           >
-            {/* Globe icon */}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" strokeWidth={1.5} />
               <path strokeWidth={1.5} d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
