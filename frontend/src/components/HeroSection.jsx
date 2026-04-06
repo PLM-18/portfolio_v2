@@ -1,5 +1,5 @@
 export default function HeroSection({ profile }) {
-  const { name, tagline, bio, availableForCollaboration, github } = profile;
+  const { name, tagline, bio, availableForCollaboration, github, linkedin } = profile;
   const [firstName, ...rest] = name.split(" ");
   const lastName = rest.join(" ");
 
@@ -53,12 +53,14 @@ export default function HeroSection({ profile }) {
           >
             GitHub
           </a>
-          <button
-            onClick={handleConnect}
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noreferrer"
             className="border border-outline-variant/20 text-on-surface-variant px-8 py-4 rounded-sm font-label font-bold uppercase tracking-wider hover:bg-white/5 active:scale-95 transition-all"
           >
             Connect
-          </button>
+          </a>
         </div>
       </div>
     </section>

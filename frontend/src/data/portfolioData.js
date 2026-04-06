@@ -10,7 +10,7 @@ export const profile = {
   email: "u23629810@tuks.co.za",
   phone: "067 127 2394",
   github: "https://github.com/PLM-18",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/philemon-m-9a0a50268/",
   location: "Pretoria, South Africa",
   availableForCollaboration: true,
 };
