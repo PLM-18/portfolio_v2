@@ -57,7 +57,7 @@ export const projects = [
     displayType: "image",
     imageUrl: null,
     videoUrl: null,
-    repo: "https://github.com/PLM-18/SecureFileSharingPlatform",
+    repo: "https://github.com/COS301-SE-2025/Secure-File-Sharing-Platform",
     tags: ["Encryption", "Docker", "CI/CD", "Go"],
     featured: true,
   },
