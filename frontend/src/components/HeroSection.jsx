@@ -7,10 +7,6 @@ export default function HeroSection({ profile }) {
     window.open("/Resume.pdf", "_blank");
   }
 
-  function handleConnect() {
-    document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
     <section id="root-section" className="relative min-h-[530px] flex flex-col justify-center">
       {/* ambient glow */}
