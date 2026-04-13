@@ -3,6 +3,7 @@ const navItems = [
   { id: "projects", label: "Projects", icon: "reorder" },
   { id: "stack", label: "Stack", icon: "terminal" },
   { id: "contact", label: "Contact", icon: "alternate_email" },
+  { id: "games", label: "Games", icon: "grid_view" },
 ];
 
 export default function MobileNav({ activeSection, onNavClick }) {

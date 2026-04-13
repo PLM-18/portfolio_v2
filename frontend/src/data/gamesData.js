@@ -1,0 +1,92 @@
+export const questions = [
+  {
+    question: "What does 'O(n log n)' typically describe?",
+    options: ["Linear search", "Efficient sorting (e.g. mergesort)", "Hash table lookup", "Binary tree insertion"],
+    correct: 1,
+    explanation: "O(n log n) is the time complexity of efficient comparison-based sorting algorithms like mergesort and heapsort.",
+  },
+  {
+    question: "In React, what hook is used for side effects?",
+    options: ["useState", "useEffect", "useRef", "useMemo"],
+    correct: 1,
+    explanation: "useEffect lets you perform side effects in function components, like data fetching or subscriptions.",
+  },
+  {
+    question: "What does SQL JOIN do?",
+    options: ["Deletes matching rows", "Combines rows from two tables", "Creates a new table", "Sorts results"],
+    correct: 1,
+    explanation: "JOIN combines rows from two or more tables based on a related column between them.",
+  },
+  {
+    question: "What is a mutex used for?",
+    options: ["Memory allocation", "Mutual exclusion in concurrent code", "Network routing", "Data encryption"],
+    correct: 1,
+    explanation: "A mutex (mutual exclusion) prevents multiple threads from accessing shared resources simultaneously.",
+  },
+  {
+    question: "Which data structure uses LIFO ordering?",
+    options: ["Queue", "Stack", "Linked List", "Hash Map"],
+    correct: 1,
+    explanation: "A stack follows Last-In-First-Out (LIFO) ordering -- the last element added is the first removed.",
+  },
+  {
+    question: "What does REST stand for?",
+    options: ["Remote Execution Standard", "Representational State Transfer", "Request-Event Service Technology", "Resource Endpoint System"],
+    correct: 1,
+    explanation: "REST (Representational State Transfer) is an architectural style for designing networked applications.",
+  },
+  {
+    question: "What is Docker primarily used for?",
+    options: ["Version control", "Containerization", "Database management", "Code compilation"],
+    correct: 1,
+    explanation: "Docker packages applications and their dependencies into containers for consistent deployment.",
+  },
+  {
+    question: "What does 'git rebase' do?",
+    options: ["Deletes a branch", "Reapplies commits on top of another base", "Reverts all changes", "Creates a new repository"],
+    correct: 1,
+    explanation: "Git rebase moves or reapplies a sequence of commits to a new base commit.",
+  },
+  {
+    question: "What is polymorphism in OOP?",
+    options: ["Hiding data", "Objects taking many forms", "Single inheritance", "Memory management"],
+    correct: 1,
+    explanation: "Polymorphism allows objects of different types to be treated as instances of a common superclass.",
+  },
+  {
+    question: "What does JWT stand for?",
+    options: ["Java Web Token", "JSON Web Token", "JavaScript Worker Thread", "Joint Web Transfer"],
+    correct: 1,
+    explanation: "JWT (JSON Web Token) is a compact, URL-safe means of representing claims between two parties.",
+  },
+  {
+    question: "What is the purpose of an API gateway?",
+    options: ["Store databases", "Route and manage API traffic", "Compile code", "Design UIs"],
+    correct: 1,
+    explanation: "An API gateway acts as a single entry point for API calls, handling routing, rate limiting, and authentication.",
+  },
+  {
+    question: "What is a deadlock?",
+    options: ["A fast algorithm", "Two processes waiting on each other forever", "A type of encryption", "A design pattern"],
+    correct: 1,
+    explanation: "A deadlock occurs when two or more processes are each waiting for the other to release a resource.",
+  },
+];
+
+export const CodeSnippets = [
+  `const sum = (a, b) => a + b;`,
+  `for (let i = 0; i < n; i++) {}`,
+  `function hello() { return "world"; }`,
+  `const arr = [1, 2, 3].map(x => x * 2);`,
+  `if (err !== null) { throw err; }`,
+  `const data = await fetch(url);`,
+  `export default function App() {}`,
+  `let result = arr.filter(Boolean);`,
+  `const [state, setState] = useState(0);`,
+  `console.log("Hello, World!");`,
+  `return Object.keys(obj).length;`,
+  `const clone = { ...original };`,
+  `try { parse(json); } catch (e) {}`,
+  `arr.reduce((a, b) => a + b, 0);`,
+  `const fn = () => Promise.resolve();`,
+];
