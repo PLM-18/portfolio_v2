@@ -8,6 +8,7 @@ import SkillsEducationSection from "./components/SkillsEducationSection";
 import Footer from "./components/Footer";
 import MemoryMatch from "./components/games/MemoryMatch";
 import CodeQuiz from "./components/games/CodeQuiz";
+import TypingSpeedTest from "./components/games/TypingSpeedTest";
 
 const GAMES = [
   {
@@ -21,6 +22,12 @@ const GAMES = [
     label: "Code_Quiz",
     icon: "quiz",
     description: "7 quick CS questions on algorithms, tools, and more.",
+  },
+  {
+    id: "typing",
+    label: "Speed_Type",
+    icon: "keyboard",
+    description: "Type code snippets as fast as you can in 30 seconds.",
   },
 ];
 
@@ -124,6 +131,9 @@ export default function App() {
             )}
             {activeGame === "quiz" && (
               <CodeQuiz onBack={() => setActiveGame(null)} />
+            )}
+            {activeGame === "typing" && (
+              <TypingSpeedTest onBack={() => setActiveGame(null)} />
             )}
           </div>
         </div>
