@@ -120,7 +120,7 @@ export default function ProjectCard({ project }) {
 }
 
 /** Shown when no image/video URL is available yet */
-function PlaceholderMedia({ title, tags }) {
+function PlaceholderMedia({ title }) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-6 relative">
       <div
