@@ -38,7 +38,7 @@ export default function ProjectCard({ project }) {
               key={index}
               src={images[index]}
               alt={`${title} screenshot ${index + 1}`}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+              className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-105"
             />
 
             {/* Prev / Next buttons — only when multiple images */}
