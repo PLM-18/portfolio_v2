@@ -54,12 +54,6 @@ export default function MemoryMatch({ onBack }) {
     return () => clearInterval(timer);
   }, [phase, startTime]);
 
-  useEffect(() => {
-    if (cards.length > 0 && cards.every((c) => c.matched)) {
-      setPhase("done");
-    }
-  }, [cards]);
-
   const handleFlip = (id) => {
     if (locked) return;
     if (flipped.includes(id)) return;
@@ -78,6 +72,10 @@ export default function MemoryMatch({ onBack }) {
 
       if (cardA.icon === cardB.icon) {
         setTimeout(() => {
+          const alreadyMatched = cards.filter((c) => c.matched).length;
+          if (alreadyMatched + 2 === cards.length) {
+            setPhase("done");
+          }
           setCards((prev) =>
             prev.map((c) =>
               c.id === a || c.id === b ? { ...c, matched: true } : c

@@ -19,6 +19,7 @@ export default function TypingSpeedTest({ onBack }) {
 
     const snippetRef = useRef("");
     const typedRef = useRef("");
+    const timeLeftRef = useRef(30);
 
     const getRandomSnippet = useCallback(
         () => CodeSnippets[Math.floor(Math.random() * CodeSnippets.length)],
@@ -35,6 +36,7 @@ export default function TypingSpeedTest({ onBack }) {
         startTimeRef.current = Date.now();
         setSnippet(s);
         setTyped("");
+        timeLeftRef.current = 30;
         setTimeLeft(30);
         setCompletedCount(0);
         setWpm(0);
@@ -46,32 +48,24 @@ export default function TypingSpeedTest({ onBack }) {
     useEffect(() => {
         if (phase !== "playing") return;
         timerRef.current = setInterval(() => {
-            setTimeLeft((t) => {
-                if (t <= 1) {
-                    clearInterval(timerRef.current);
-                    setPhase("done");
-                    return 0;
+            timeLeftRef.current -= 1;
+            setTimeLeft(timeLeftRef.current);
+            if (timeLeftRef.current <= 0) {
+                clearInterval(timerRef.current);
+                const currentTyped = typedRef.current;
+                const currentSnippet = snippetRef.current;
+                let partialCorrect = 0;
+                for (let i = 0; i < currentTyped.length; i++) {
+                    if (currentTyped[i] === currentSnippet[i]) partialCorrect++;
                 }
-                return t - 1;
-            });
+                const total = totalCharsRef.current + currentTyped.length;
+                const correct = correctCharsRef.current + partialCorrect;
+                setWpm(total > 0 ? Math.round((total / 5 / 30) * 60) : 0);
+                setAccuracy(total > 0 ? Math.round((correct / total) * 100) : 0);
+                setPhase("done");
+            }
         }, 1000);
         return () => clearInterval(timerRef.current);
-    }, [phase]);
-
-    useEffect(() => {
-        if (phase !== "done") return;
-
-        const currentTyped = typedRef.current;
-        const currentSnippet = snippetRef.current;
-        let partialCorrect = 0;
-        for (let i = 0; i < currentTyped.length; i++) {
-            if (currentTyped[i] === currentSnippet[i]) partialCorrect++;
-        }
-
-        const total = totalCharsRef.current + currentTyped.length;
-        const correct = correctCharsRef.current + partialCorrect;
-        setWpm(total > 0 ? Math.round((total / 5 / 30) * 60) : 0);
-        setAccuracy(total > 0 ? Math.round((correct / total) * 100) : 0);
     }, [phase]);
 
     const handleInput = (e) => {
