@@ -1,9 +1,24 @@
+import { useState } from "react";
+
 /**
  * ProjectCard — for projects with a visual (image or YouTube) media header.
  * displayType: "image" | "youtube"
+ * imageUrl: string | string[]  — array enables a carousel
  */
 export default function ProjectCard({ project }) {
   const { title, subtitle, description, displayType, imageUrl, youtubeId, repo, tags } = project;
+
+  const images = Array.isArray(imageUrl) ? imageUrl : imageUrl ? [imageUrl] : [];
+  const [index, setIndex] = useState(0);
+
+  const prev = (e) => {
+    e.stopPropagation();
+    setIndex((i) => (i - 1 + images.length) % images.length);
+  };
+  const next = (e) => {
+    e.stopPropagation();
+    setIndex((i) => (i + 1) % images.length);
+  };
 
   return (
     <div className="group bg-surface-container rounded-sm overflow-hidden transition-all duration-300 hover:bg-surface-container-highest flex flex-col h-full">
@@ -17,12 +32,49 @@ export default function ProjectCard({ project }) {
             allowFullScreen
             className="w-full h-full border-0"
           />
-        ) : imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={`${title} showcase`}
-            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-          />
+        ) : images.length > 0 ? (
+          <>
+            <img
+              key={index}
+              src={images[index]}
+              alt={`${title} screenshot ${index + 1}`}
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+            />
+
+            {/* Prev / Next buttons — only when multiple images */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  aria-label="Previous image"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-surface-container/70 text-on-surface opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container"
+                >
+                  <span className="material-symbols-outlined text-sm">chevron_left</span>
+                </button>
+                <button
+                  onClick={next}
+                  aria-label="Next image"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-surface-container/70 text-on-surface opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container"
+                >
+                  <span className="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+
+                {/* Dot indicators */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); setIndex(i); }}
+                      aria-label={`Go to image ${i + 1}`}
+                      className={`w-1.5 h-1.5 rounded-full transition-all ${
+                        i === index ? "bg-primary scale-125" : "bg-on-surface/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         ) : (
           <PlaceholderMedia title={title} tags={tags} />
         )}

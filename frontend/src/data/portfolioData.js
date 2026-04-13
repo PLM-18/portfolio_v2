@@ -26,7 +26,12 @@ export const projects = [
     description:
       "Angular frontend with a C# .NET API backend supporting cart, checkout, and user authentication.",
     displayType: "image",
-    imageUrl: null,
+    imageUrl: [
+      "https://raw.githubusercontent.com/PLM-18/OnlineStore/main/Assets/screenshot_1.png",
+      "https://raw.githubusercontent.com/PLM-18/OnlineStore/main/Assets/screenshot_2.png",
+      "https://raw.githubusercontent.com/PLM-18/OnlineStore/main/Assets/screenshot_3.png",
+      "https://raw.githubusercontent.com/PLM-18/OnlineStore/main/Assets/screenshot_4.png"
+    ],
     repo: "https://github.com/PLM-18/OnlineStore",
     tags: ["Angular", "C#", ".NET", "REST API"],
     featured: true,

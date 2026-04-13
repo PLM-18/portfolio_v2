@@ -15,10 +15,10 @@ export default function Footer({ profile }) {
       >
         <div className="text-center md:text-left">
           <span className="text-primary font-bold font-mono text-xs tracking-widest">
-            TERMINAL_CURATOR
+            PHILEMON
           </span>
           <p className="font-mono text-xs tracking-widest text-on-surface-variant/40 mt-2">
-            © {new Date().getFullYear()} TERMINAL_CURATOR // BUILT_WITH_PRECISION
+            © {new Date().getFullYear()} PHILEMON // BUILT_WITH_PRECISION
           </p>
         </div>
 

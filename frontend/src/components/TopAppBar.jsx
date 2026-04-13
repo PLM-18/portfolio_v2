@@ -12,7 +12,7 @@ export default function TopAppBar({ activeSection, onNavClick }) {
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-primary">terminal</span>
           <span className="font-headline tracking-widest uppercase text-xl font-bold text-primary">
-            TERMINAL_CURATOR
+            PHILEMON PORTFOLIO
           </span>
         </div>
 
