@@ -1,7 +1,4 @@
-/**
- * Static portfolio data — mirrors the shape returned by the Strapi CMS.
- * Used as a fallback when VITE_STRAPI_URL is not set or the API is unreachable.
- */
+/** Static portfolio data. */
 
 export const profile = {
   name: "Philemon Muleya",
@@ -17,7 +14,7 @@ export const profile = {
 
 /** displayType values:
  *  "image"                — static image thumbnail
- *  "video"                — HTML5 video player
+ *  "youtube"              — embedded YouTube iframe (set youtubeId to the video ID)
  *  "terminal-static"      — decorative, non-interactive terminal
  *  "terminal-interactive" — live terminal via WebSocket (wsEndpoint required)
  */
@@ -29,8 +26,7 @@ export const projects = [
     description:
       "Angular frontend with a C# .NET API backend supporting cart, checkout, and user authentication.",
     displayType: "image",
-    imageUrl: null, // replace with actual image or Strapi media URL
-    videoUrl: null,
+    imageUrl: null,
     repo: "https://github.com/PLM-18/OnlineStore",
     tags: ["Angular", "C#", ".NET", "REST API"],
     featured: true,
@@ -43,7 +39,6 @@ export const projects = [
       "Mobile fitness app built in Ionic for personalised workout tracking with biometric data visualisation.",
     displayType: "image",
     imageUrl: null,
-    videoUrl: null,
     repo: "https://github.com/PLM-18/WorkoutApp",
     tags: ["Ionic", "TypeScript", "Mobile"],
     featured: true,
@@ -54,9 +49,9 @@ export const projects = [
     subtitle: "Security · DevOps",
     description:
       "End-to-end encrypted file sharing system ensuring access only to intended users. Led integration and CI/CD pipeline work.",
-    displayType: "image",
+    displayType: "youtube",
     imageUrl: null,
-    videoUrl: null,
+    youtubeId: "yc_qbKQRYv0",
     repo: "https://github.com/COS301-SE-2025/Secure-File-Sharing-Platform",
     tags: ["Encryption", "Docker", "CI/CD", "Go"],
     featured: true,
@@ -69,7 +64,6 @@ export const projects = [
       "Collaborative coding platform with real-time file editing.",
     displayType: "image",
     imageUrl: null,
-    videoUrl: null,
     repo: "https://github.com/PLM-18/VersionControlSite",
     tags: ["WebSockets", "Real-time", "Collaboration"],
     featured: false,
@@ -82,11 +76,9 @@ export const projects = [
       "Custom POP3 client using raw sockets to retrieve, list and manage email data directly from mail servers.",
     displayType: "terminal-interactive",
     imageUrl: null,
-    videoUrl: null,
     repo: "https://github.com/PLM-18/POP3Client",
     tags: ["Java", "Sockets", "Networking", "POP3"],
     featured: true,
-    // wsEndpoint will be set via env or Strapi once the VM is provisioned
     wsEndpoint: import.meta.env.VITE_POP3_WS_URL ?? null,
     terminalLabel: "pop3_client.sh — 80x24",
     // Static lines shown before the user connects
@@ -110,7 +102,6 @@ export const projects = [
       "File watcher that implements the FTP protocol, automatically syncing local changes to a remote server over raw sockets.",
     displayType: "terminal-static",
     imageUrl: null,
-    videoUrl: null,
     repo: "https://github.com/PLM-18/FTPSERVER",
     tags: ["Go", "FTP", "Sockets", "File Watcher"],
     featured: true,

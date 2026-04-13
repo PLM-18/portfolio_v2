@@ -1,22 +1,21 @@
 /**
- * ProjectCard — for projects with a visual (image or video) media header.
- * displayType: "image" | "video"
+ * ProjectCard — for projects with a visual (image or YouTube) media header.
+ * displayType: "image" | "youtube"
  */
 export default function ProjectCard({ project }) {
-  const { title, subtitle, description, displayType, imageUrl, videoUrl, repo, tags } = project;
+  const { title, subtitle, description, displayType, imageUrl, youtubeId, repo, tags } = project;
 
   return (
     <div className="group bg-surface-container rounded-sm overflow-hidden transition-all duration-300 hover:bg-surface-container-highest flex flex-col h-full">
       {/* Media */}
       <div className="aspect-video relative overflow-hidden bg-surface-container-low">
-        {displayType === "video" && videoUrl ? (
-          <video
-            src={videoUrl}
-            className="object-cover w-full h-full"
-            autoPlay
-            muted
-            loop
-            playsInline
+        {displayType === "youtube" && youtubeId ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full border-0"
           />
         ) : imageUrl ? (
           <img
