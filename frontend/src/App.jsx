@@ -1,49 +1,60 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import ScrollReveal from './components/ScrollReveal'
+import { useState, useEffect } from "react";
+import { usePortfolioData } from "./hooks/usePortfolioData";
+import TopAppBar from "./components/TopAppBar";
+import MobileNav from "./components/MobileNav";
+import HeroSection from "./components/HeroSection";
+import ProjectsSection from "./components/ProjectsSection";
+import SkillsEducationSection from "./components/SkillsEducationSection";
+import Footer from "./components/Footer";
 
-const dummyProjects = [
-  { id: 1, title: 'Secure File Sharing Platform', tech: 'Node.js, React, Docker' },
-  { id: 2, title: 'POP3 Client Implementation', tech: 'C++, Raw Sockets' },
-  { id: 3, title: 'FTP Server Sync Utility', tech: 'Java, Multithreading' },
-  { id: 4, title: 'E-commerce Store API', tech: 'C# .NET, Angular' },
-];
+const SECTION_IDS = {
+  root: "root-section",
+  projects: "projects-section",
+  stack: "stack-section",
+  contact: "contact-section",
+};
 
-function App() {
+export default function App() {
+  const { profile, projects, skillCategories, education, loading } = usePortfolioData();
+  const [activeSection, setActiveSection] = useState("root");
+
+  // Highlight the nav item for the section currently in the viewport
+  useEffect(() => {
+    const observers = Object.entries(SECTION_IDS).map(([key, id]) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(key); },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+      return observer;
+    });
+
+    return () => observers.forEach((obs) => obs?.disconnect());
+  }, [loading]);
+
+  function handleNavClick(sectionId) {
+    const elId = SECTION_IDS[sectionId];
+    document.getElementById(elId)?.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(sectionId);
+  }
+
   return (
-    <div className="min-h-screen bg-[#0d1117] text-gray-300 font-sans">
-      <Navbar />
+    <div className="font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+      <TopAppBar activeSection={activeSection} onNavClick={handleNavClick} />
 
-
-      <main className="flex flex-col items-center justify-center min-h-screen px-6 pt-14 text-center">
-        <h1 className="text-5xl font-light mb-4 text-white">
-          Philemon Muleya. <br />
-          <span className="font-bold text-[#5a8fb4]">Aspiring Software Engineer.</span>
-        </h1>
-        <p className="max-w-xl text-gray-400">
-          Scroll down to see the projects load in using the Intersection Observer API.
-        </p>
+      <main className="pt-24 pb-32 px-6 max-w-7xl mx-auto space-y-24">
+        <HeroSection profile={profile} />
+        <ProjectsSection projects={projects} />
+        <SkillsEducationSection
+          skillCategories={skillCategories}
+          education={education}
+        />
       </main>
 
-
-      <section className="max-w-4xl mx-auto px-6 py-24 space-y-32">
-        {dummyProjects.map((project) => (
-          <ScrollReveal key={project.id}>
-            <div className="bg-[#161b22] border border-gray-700 rounded-lg p-10 shadow-2xl hover:border-[#5a8fb4] transition-colors cursor-pointer text-left">
-              <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
-              <p className="text-[#5a8fb4] font-mono text-sm mb-6">{project.tech}</p>
-              <div className="h-48 bg-[#0d1117] rounded border border-gray-800 flex items-center justify-center">
-                <span className="text-gray-600 font-mono text-sm">Project Interface / Terminal Simulation Here</span>
-              </div>
-            </div>
-          </ScrollReveal>
-        ))}
-      </section>
-
-
-      <div className="h-64"></div>
+      <Footer profile={profile} />
+      <MobileNav activeSection={activeSection} onNavClick={handleNavClick} />
     </div>
-  )
+  );
 }
-
-export default App
