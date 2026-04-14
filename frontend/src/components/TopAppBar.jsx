@@ -4,6 +4,7 @@ export default function TopAppBar({ activeSection, onNavClick }) {
     { id: "projects", label: "Projects" },
     { id: "stack", label: "Stack" },
     { id: "contact", label: "Contact" },
+    { id: "games", label: "Games" },
   ];
 
   return (

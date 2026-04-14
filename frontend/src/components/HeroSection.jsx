@@ -1,7 +1,34 @@
+import { useState, useEffect } from "react";
+
 export default function HeroSection({ profile }) {
   const { name, tagline, bio, availableForCollaboration, github, linkedin } = profile;
   const [firstName, ...rest] = name.split(" ");
   const lastName = rest.join(" ");
+
+  const [displayFirst, setDisplayFirst] = useState("");
+  const [displayLast, setDisplayLast] = useState("");
+  // phases: typingFirst | typingLast | done
+  const [phase, setPhase] = useState("typingFirst");
+
+  const done = phase === "typingLast" && displayLast.length === lastName.length;
+
+  useEffect(() => {
+    let timeout;
+    if (phase === "typingFirst") {
+      if (displayFirst.length < firstName.length) {
+        timeout = setTimeout(() => {
+          setDisplayFirst(firstName.slice(0, displayFirst.length + 1));
+        }, 100);
+      } else {
+        timeout = setTimeout(() => setPhase("typingLast"), 300);
+      }
+    } else if (phase === "typingLast" && !done) {
+      timeout = setTimeout(() => {
+        setDisplayLast(lastName.slice(0, displayLast.length + 1));
+      }, 100);
+    }
+    return () => clearTimeout(timeout);
+  }, [phase, displayFirst, displayLast, firstName, lastName, done]);
 
   function handleResume() {
     window.open("/Resume.pdf", "_blank");
@@ -23,9 +50,17 @@ export default function HeroSection({ profile }) {
         )}
 
         <h1 className="font-headline text-5xl md:text-8xl font-bold tracking-tight text-on-surface leading-none">
-          {firstName} <br />
-          <span className="text-primary">{lastName}.</span>
-          <span className="inline-block w-4 h-12 md:w-8 md:h-20 bg-primary ml-2 animate-pulse align-middle" />
+          {displayFirst}
+          {phase === "typingFirst" && (
+            <span className="inline-block w-4 h-12 md:w-8 md:h-20 bg-primary ml-2 align-middle" />
+          )}
+          <br />
+          <span className="text-primary">
+            {displayLast}{done && "."}
+          </span>
+          {phase !== "typingFirst" && (
+            <span className={`inline-block w-4 h-12 md:w-8 md:h-20 bg-primary ml-2 align-middle${done ? " animate-pulse" : ""}`} />
+          )}
         </h1>
 
         <h2 className="font-headline text-xl md:text-3xl text-on-surface-variant max-w-2xl font-light">
