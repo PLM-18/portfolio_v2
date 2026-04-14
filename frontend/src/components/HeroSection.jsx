@@ -10,6 +10,8 @@ export default function HeroSection({ profile }) {
   // phases: typingFirst | typingLast | done
   const [phase, setPhase] = useState("typingFirst");
 
+  const done = phase === "typingLast" && displayLast.length === lastName.length;
+
   useEffect(() => {
     let timeout;
     if (phase === "typingFirst") {
@@ -20,17 +22,13 @@ export default function HeroSection({ profile }) {
       } else {
         timeout = setTimeout(() => setPhase("typingLast"), 300);
       }
-    } else if (phase === "typingLast") {
-      if (displayLast.length < lastName.length) {
-        timeout = setTimeout(() => {
-          setDisplayLast(lastName.slice(0, displayLast.length + 1));
-        }, 100);
-      } else {
-        setPhase("done");
-      }
+    } else if (phase === "typingLast" && !done) {
+      timeout = setTimeout(() => {
+        setDisplayLast(lastName.slice(0, displayLast.length + 1));
+      }, 100);
     }
     return () => clearTimeout(timeout);
-  }, [phase, displayFirst, displayLast, firstName, lastName]);
+  }, [phase, displayFirst, displayLast, firstName, lastName, done]);
 
   function handleResume() {
     window.open("/Resume.pdf", "_blank");
@@ -58,10 +56,10 @@ export default function HeroSection({ profile }) {
           )}
           <br />
           <span className="text-primary">
-            {displayLast}{phase === "done" && "."}
+            {displayLast}{done && "."}
           </span>
           {phase !== "typingFirst" && (
-            <span className={`inline-block w-4 h-12 md:w-8 md:h-20 bg-primary ml-2 align-middle${phase === "done" ? " animate-pulse" : ""}`} />
+            <span className={`inline-block w-4 h-12 md:w-8 md:h-20 bg-primary ml-2 align-middle${done ? " animate-pulse" : ""}`} />
           )}
         </h1>
 
