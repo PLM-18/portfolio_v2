@@ -7,7 +7,7 @@ export default function HeroSection({ profile }) {
 
   const [displayFirst, setDisplayFirst] = useState("");
   const [displayLast, setDisplayLast] = useState("");
-  // phases: typingFirst | typingLast | done
+
   const [phase, setPhase] = useState("typingFirst");
 
   const done = phase === "typingLast" && displayLast.length === lastName.length;

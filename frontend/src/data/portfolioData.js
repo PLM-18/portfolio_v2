@@ -1,4 +1,3 @@
-/** Static portfolio data. */
 
 export const profile = {
   name: "Philemon Muleya",
@@ -12,12 +11,6 @@ export const profile = {
   availableForCollaboration: true,
 };
 
-/** displayType values:
- *  "image"                — static image thumbnail
- *  "youtube"              — embedded YouTube iframe (set youtubeId to the video ID)
- *  "terminal-static"      — decorative, non-interactive terminal
- *  "terminal-interactive" — live terminal via WebSocket (wsEndpoint required)
- */
 export const projects = [
   {
     id: "ecommerce",
@@ -159,7 +152,7 @@ export const education = [
       "Computer Security",
     ],
     startYear: 2023,
-    endYear: null, // currently enrolled
+    endYear: null,
     badge: "GRADUATE_STUDIES",
   },
 ];

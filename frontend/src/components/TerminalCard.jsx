@@ -1,15 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-/**
- * TerminalCard
- *
- * displayType "terminal-static"      — decorative only, shows terminalLines
- * displayType "terminal-interactive" — shows static preview + "Launch Terminal" button.
- *                                      Clicking opens a modal with the full session
- *                                      (mock POP3 sim when wsEndpoint is null, live
- *                                      WebSocket otherwise). Closing resets the session.
- */
 export default function TerminalCard({ project }) {
   const {
     title,
@@ -51,8 +42,6 @@ export default function TerminalCard({ project }) {
   );
 }
 
-/* ─── Sub-components ────────────────────────────────────────────────────── */
-
 function TitleBar({ label, onClose }) {
   return (
     <div className="bg-surface-container-high px-4 py-2 flex items-center justify-between border-b border-white/5 shrink-0">
@@ -88,8 +77,6 @@ function StaticTerminal({ terminalLines }) {
     </div>
   );
 }
-
-/* ─── Interactive terminal — card always stays as preview ────────────────── */
 
 function InteractiveTerminal({ terminalLines, wsEndpoint, label }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,10 +127,7 @@ function IdlePreview({ terminalLines, wsEndpoint, onLaunch }) {
   );
 }
 
-/* ─── Modal overlay ──────────────────────────────────────────────────────── */
-
 function TerminalModal({ label, wsEndpoint, onClose }) {
-  // Close on Escape; lock body scroll
   useEffect(() => {
     const handleKey = (e) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handleKey);
@@ -159,7 +143,6 @@ function TerminalModal({ label, wsEndpoint, onClose }) {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/70 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Terminal window — stop click propagation so backdrop click closes */}
       <div
         className="terminal-glow w-full max-w-2xl flex flex-col bg-surface-container-lowest rounded-sm border border-outline-variant/20 shadow-2xl"
         style={{ height: "min(600px, 80vh)" }}
@@ -176,8 +159,6 @@ function TerminalModal({ label, wsEndpoint, onClose }) {
     </div>
   );
 }
-
-/* ─── Live WebSocket terminal ────────────────────────────────────────────── */
 
 function LiveWSTerminal({ wsEndpoint }) {
   const [state, setState] = useState("connecting");
@@ -274,8 +255,6 @@ function LiveWSTerminal({ wsEndpoint }) {
     </div>
   );
 }
-
-/* ─── Mock POP3 Terminal ─────────────────────────────────────────────────── */
 
 const MOCK_EMAILS = [
   {
@@ -609,8 +588,6 @@ function MockPOP3Terminal() {
     </div>
   );
 }
-
-/* ─── Shared footer ──────────────────────────────────────────────────────── */
 
 function TerminalFooter({ title, subtitle, description, repo, tags }) {
   return (

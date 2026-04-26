@@ -1,10 +1,5 @@
 import { useState } from "react";
 
-/**
- * ProjectCard — for projects with a visual (image or YouTube) media header.
- * displayType: "image" | "youtube"
- * imageUrl: string | string[]  — array enables a carousel
- */
 export default function ProjectCard({ project }) {
   const { title, subtitle, description, displayType, imageUrl, youtubeId, repo, tags } = project;
 
@@ -22,7 +17,6 @@ export default function ProjectCard({ project }) {
 
   return (
     <div className="group bg-surface-container rounded-sm overflow-hidden transition-all duration-300 hover:bg-surface-container-highest flex flex-col h-full">
-      {/* Media */}
       <div className="aspect-video relative overflow-hidden bg-surface-container-low">
         {displayType === "youtube" && youtubeId ? (
           <iframe
@@ -41,7 +35,6 @@ export default function ProjectCard({ project }) {
               className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-105"
             />
 
-            {/* Prev / Next buttons — only when multiple images */}
             {images.length > 1 && (
               <>
                 <button
@@ -59,7 +52,6 @@ export default function ProjectCard({ project }) {
                   <span className="material-symbols-outlined text-sm">chevron_right</span>
                 </button>
 
-                {/* Dot indicators */}
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
                   {images.map((_, i) => (
                     <button
@@ -81,7 +73,6 @@ export default function ProjectCard({ project }) {
         <div className="absolute inset-0 bg-linear-to-t from-surface-container via-transparent to-transparent opacity-60 pointer-events-none" />
       </div>
 
-      {/* Content */}
       <div className="p-8 space-y-4 flex flex-col flex-grow">
         <div>
           <h4 className="font-headline text-2xl font-bold text-on-surface">{title}</h4>
@@ -119,7 +110,6 @@ export default function ProjectCard({ project }) {
   );
 }
 
-/** Shown when no image/video URL is available yet */
 function PlaceholderMedia({ title }) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-6 relative">

@@ -44,7 +44,6 @@ export default function App() {
   const [showGames, setShowGames] = useState(false);
   const [activeGame, setActiveGame] = useState(null);
 
-  // Highlight the nav item for the section currently in the viewport
   useEffect(() => {
     const observers = Object.entries(SECTION_IDS).map(([key, id]) => {
       const el = document.getElementById(id);
