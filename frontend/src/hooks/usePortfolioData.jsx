@@ -3,8 +3,9 @@ import {
   projects,
   skillCategories,
   education,
+  certifications,
 } from "../data/portfolioData";
 
 export function usePortfolioData() {
-  return { profile, projects, skillCategories, education, loading: false, error: null };
+  return { profile, projects, skillCategories, education, certifications, loading: false, error: null };
 }

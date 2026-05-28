@@ -3,6 +3,7 @@ export default function TopAppBar({ activeSection, onNavClick }) {
     { id: "root", label: "Root" },
     { id: "projects", label: "Projects" },
     { id: "stack", label: "Stack" },
+    { id: "certifications", label: "Certifications" },
     { id: "contact", label: "Contact" },
     { id: "games", label: "Games" },
   ];

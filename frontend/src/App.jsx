@@ -5,6 +5,7 @@ import MobileNav from "./components/MobileNav";
 import HeroSection from "./components/HeroSection";
 import ProjectsSection from "./components/ProjectsSection";
 import SkillsEducationSection from "./components/SkillsEducationSection";
+import CertificationsSection from "./components/CertificationsSection";
 import Footer from "./components/Footer";
 import MemoryMatch from "./components/games/MemoryMatch";
 import CodeQuiz from "./components/games/CodeQuiz";
@@ -35,11 +36,12 @@ const SECTION_IDS = {
   root: "root-section",
   projects: "projects-section",
   stack: "stack-section",
+  certifications: "certifications-section",
   contact: "contact-section",
 };
 
 export default function App() {
-  const { profile, projects, skillCategories, education, loading } = usePortfolioData();
+  const { profile, projects, skillCategories, education, certifications, loading } = usePortfolioData();
   const [activeSection, setActiveSection] = useState("root");
   const [showGames, setShowGames] = useState(false);
   const [activeGame, setActiveGame] = useState(null);
@@ -80,6 +82,7 @@ export default function App() {
           skillCategories={skillCategories}
           education={education}
         />
+        <CertificationsSection certifications={certifications} />
       </main>
 
       <Footer profile={profile} />
