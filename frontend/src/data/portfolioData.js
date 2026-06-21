@@ -163,6 +163,6 @@ export const certifications = [
     title: "Cloud Computing 101",
     issuer: "Credly",
     credentialUrl: "https://www.credly.com/badges/d46920d5-0a86-422a-bd1d-12bd3ab04a22/public_url",
-    image: '/src/assets/Certfications/cloud-101.png'
+    image: new URL('../assets/Certfications/cloud-101.png', import.meta.url).href
   },
 ];
