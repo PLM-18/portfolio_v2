@@ -10,7 +10,7 @@ export default function ProjectsSection({ projects }) {
       <div className="flex items-end justify-between">
         <div className="space-y-2">
           <h3 className="font-headline text-3xl font-bold uppercase tracking-tighter text-on-surface">
-            Deployed_Systems
+            Projects
           </h3>
           <div className="h-1 w-12 bg-primary" />
         </div>
