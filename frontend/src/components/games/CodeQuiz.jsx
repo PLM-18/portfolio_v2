@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { questions as ALL_QUESTIONS } from "../../data/gamesData";
+import Icon from "../Icon";
 
 function shuffleAndPick(arr, count) {
   const shuffled = [...arr];
@@ -66,12 +67,12 @@ export default function CodeQuiz({ onBack }) {
         onClick={onBack}
         className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-6 cursor-pointer"
       >
-        <span className="material-symbols-outlined text-sm">arrow_back</span>
+        <Icon name="arrow_back" className="text-sm" />
         <span className="font-mono text-xs uppercase tracking-wider">Back to Games</span>
       </button>
 
       <div className="flex items-center gap-3 mb-6">
-        <span className="material-symbols-outlined text-primary text-3xl">quiz</span>
+        <Icon name="quiz" className="text-primary text-3xl" />
         <h3 className="font-headline text-2xl font-bold uppercase tracking-wider">
           Code_Quiz
         </h3>
@@ -83,9 +84,7 @@ export default function CodeQuiz({ onBack }) {
 
       {phase === "idle" && (
         <div className="text-center py-12">
-          <span className="material-symbols-outlined text-6xl text-primary/30 mb-4 block">
-            quiz
-          </span>
+          <Icon name="quiz" className="text-6xl text-primary/30 mb-4 block mx-auto" />
           <button
             onClick={startQuiz}
             className="bg-primary text-surface-container-lowest font-headline text-sm uppercase tracking-wider px-8 py-3 rounded-sm font-bold hover:bg-primary-dark transition-colors cursor-pointer"

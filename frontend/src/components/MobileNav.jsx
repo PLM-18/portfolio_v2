@@ -1,3 +1,5 @@
+import Icon from "./Icon";
+
 const navItems = [
   { id: "root", label: "Root", icon: "home" },
   { id: "projects", label: "Projects", icon: "reorder" },
@@ -23,7 +25,7 @@ export default function MobileNav({ activeSection, onNavClick }) {
                 : "text-on-surface-variant hover:text-primary px-3 py-1",
             ].join(" ")}
           >
-            <span className="material-symbols-outlined">{item.icon}</span>
+            <Icon name={item.icon} className="text-xl" />
             <span className="font-label text-[10px] font-bold uppercase tracking-tighter mt-1">
               {item.label}
             </span>

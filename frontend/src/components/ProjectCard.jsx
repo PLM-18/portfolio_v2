@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Icon from "./Icon";
 
 export default function ProjectCard({ project }) {
   const { title, subtitle, description, displayType, imageUrl, youtubeId, repo, tags } = project;
@@ -42,14 +43,14 @@ export default function ProjectCard({ project }) {
                   aria-label="Previous image"
                   className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-surface-container/70 text-on-surface opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container"
                 >
-                  <span className="material-symbols-outlined text-sm">chevron_left</span>
+                  <Icon name="chevron_left" className="text-base" />
                 </button>
                 <button
                   onClick={next}
                   aria-label="Next image"
                   className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-surface-container/70 text-on-surface opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container"
                 >
-                  <span className="material-symbols-outlined text-sm">chevron_right</span>
+                  <Icon name="chevron_right" className="text-base" />
                 </button>
 
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
@@ -102,7 +103,7 @@ export default function ProjectCard({ project }) {
             className="inline-flex items-center gap-2 font-label text-xs font-bold uppercase tracking-widest text-primary pt-2 group-hover:gap-4 transition-all self-start"
           >
             View Project{" "}
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            <Icon name="arrow_forward" className="text-sm" />
           </a>
         )}
       </div>
@@ -121,7 +122,7 @@ function PlaceholderMedia({ title }) {
           backgroundSize: "24px 24px",
         }}
       />
-      <span className="material-symbols-outlined text-4xl text-primary/30">folder_code</span>
+      <Icon name="folder_code" className="text-4xl text-primary/30" />
       <span className="font-mono text-xs text-on-surface-variant/40 text-center">{title}</span>
     </div>
   );

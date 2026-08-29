@@ -1,3 +1,5 @@
+import Icon from "./Icon";
+
 export default function CertificationsSection({ certifications }) {
   return (
     <section id="certifications-section" className="space-y-8">
@@ -36,7 +38,7 @@ export default function CertificationsSection({ certifications }) {
                 className="inline-flex items-center gap-2 font-label text-xs font-bold uppercase tracking-widest text-primary pt-2 group-hover:gap-4 transition-all self-start"
               >
                 View Credential{" "}
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                <Icon name="arrow_forward" className="text-sm" />
               </a>
             )}
           </div>

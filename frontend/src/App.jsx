@@ -11,6 +11,7 @@ import MemoryMatch from "./components/games/MemoryMatch";
 import CodeQuiz from "./components/games/CodeQuiz";
 import TypingSpeedTest from "./components/games/TypingSpeedTest";
 import { CursorDots } from "./components/CursorDots";
+import Icon from "./components/Icon";
 
 const GAMES = [
   {
@@ -100,14 +101,14 @@ export default function App() {
               <>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary text-2xl">sports_esports</span>
+                    <Icon name="sports_esports" className="text-primary text-2xl" />
                     <h3 className="font-headline text-xl font-bold uppercase tracking-wider">Games</h3>
                   </div>
                   <button
                     onClick={() => setShowGames(false)}
                     className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
                   >
-                    <span className="material-symbols-outlined">close</span>
+                    <Icon name="close" className="text-xl" />
                   </button>
                 </div>
                 <div className="space-y-3">
@@ -117,14 +118,14 @@ export default function App() {
                       onClick={() => setActiveGame(game.id)}
                       className="w-full flex items-center gap-4 p-4 bg-surface-container-low border border-outline hover:border-primary/40 rounded-sm transition-all cursor-pointer text-left group"
                     >
-                      <span className="material-symbols-outlined text-primary text-2xl">{game.icon}</span>
+                      <Icon name={game.icon} className="text-primary text-2xl" />
                       <div>
                         <p className="font-headline text-sm font-bold uppercase tracking-wider text-on-surface group-hover:text-primary transition-colors">
                           {game.label}
                         </p>
                         <p className="font-mono text-xs text-on-surface-variant mt-0.5">{game.description}</p>
                       </div>
-                      <span className="material-symbols-outlined text-on-surface-variant/40 group-hover:text-primary/60 ml-auto transition-colors">chevron_right</span>
+                      <Icon name="chevron_right" className="text-on-surface-variant/40 group-hover:text-primary/60 ml-auto transition-colors text-lg" />
                     </button>
                   ))}
                 </div>
