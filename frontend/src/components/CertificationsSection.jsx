@@ -12,7 +12,7 @@ export default function CertificationsSection({ certifications }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certifications.map((cert) => (
-          <div key={cert.id} className="bg-surface-container-low p-6 rounded-sm space-y-4">
+          <div key={cert.id} className="bg-surface-container-low/90 backdrop-blur-md border border-white/10 hover:border-sky-400/30 p-6 rounded-xl space-y-4 transition-all shadow-lg">
             {cert.image && (
               <div className="flex justify-center mb-4">
                 <img 

@@ -19,7 +19,12 @@ export default function TerminalCard({ project }) {
   const label = terminalLabel ?? `${title.toLowerCase().replace(/\s+/g, "_")}.sh`;
 
   return (
-    <div className="terminal-glow bg-surface-container-lowest rounded-sm border border-outline-variant/10 overflow-hidden flex flex-col h-full">
+    <div className="project-card-glow group bg-surface-container-lowest/95 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
+      {/* Top glowing accent gradient bar matching image.png */}
+      <div className="relative w-full h-[3px] bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] blur-[4px] opacity-80" />
+      </div>
+
       <TitleBar label={label} />
 
       {isInteractive ? (

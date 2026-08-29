@@ -17,8 +17,13 @@ export default function ProjectCard({ project }) {
   };
 
   return (
-    <div className="group bg-surface-container rounded-sm overflow-hidden transition-all duration-300 hover:bg-surface-container-highest flex flex-col h-full">
-      <div className="aspect-video relative overflow-hidden bg-surface-container-low">
+    <div className="project-card-glow group bg-surface-container/90 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
+      {/* Top glowing accent gradient bar*/}
+      <div className="relative w-full h-[3px] bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] blur-[4px] opacity-80" />
+      </div>
+
+      <div className="aspect-video relative overflow-hidden bg-surface-container-low/80">
         {displayType === "youtube" && youtubeId ? (
           <iframe
             src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
@@ -59,9 +64,8 @@ export default function ProjectCard({ project }) {
                       key={i}
                       onClick={(e) => { e.stopPropagation(); setIndex(i); }}
                       aria-label={`Go to image ${i + 1}`}
-                      className={`w-1.5 h-1.5 rounded-full transition-all ${
-                        i === index ? "bg-primary scale-125" : "bg-on-surface/40"
-                      }`}
+                      className={`w-1.5 h-1.5 rounded-full transition-all ${i === index ? "bg-primary scale-125" : "bg-on-surface/40"
+                        }`}
                     />
                   ))}
                 </div>
