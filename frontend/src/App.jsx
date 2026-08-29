@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import MemoryMatch from "./components/games/MemoryMatch";
 import CodeQuiz from "./components/games/CodeQuiz";
 import TypingSpeedTest from "./components/games/TypingSpeedTest";
+import { CursorDots } from "./components/CursorDots";
 
 const GAMES = [
   {
@@ -73,6 +74,7 @@ export default function App() {
 
   return (
     <div className="font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+      <CursorDots />
       <TopAppBar activeSection={activeSection} onNavClick={handleNavClick} />
 
       <main className="pt-24 pb-32 px-6 max-w-7xl mx-auto space-y-24">
