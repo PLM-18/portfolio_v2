@@ -8,4 +8,7 @@ install:
 	cd frontend && npm install
 
 audit:
+	cd frontend && npm audit
+
+fix:
 	cd frontend && npm audit fix
