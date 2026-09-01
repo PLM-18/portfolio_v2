@@ -21,7 +21,7 @@ function Education({ education }) {
         {education.map((edu) => (
           <div
             key={edu.id}
-            className="bg-surface-container-low p-8 rounded-sm space-y-4"
+            className="bg-surface-container-low/90 backdrop-blur-md border border-white/10 hover:border-sky-400/30 p-8 rounded-xl space-y-4 transition-all shadow-lg"
           >
             <div className="flex flex-col gap-1">
               {edu.badge && (
@@ -72,7 +72,7 @@ function Skills({ skillCategories }) {
         {skillCategories.map((category) => (
           <div
             key={category.id}
-            className="bg-surface-container p-6 rounded-sm space-y-4 border-l-2 border-primary/20"
+            className="bg-surface-container/90 backdrop-blur-md border border-white/10 hover:border-primary/40 p-6 rounded-xl space-y-4 border-l-4 border-l-primary/60 transition-all shadow-lg"
           >
             <h5 className="font-headline font-bold text-sm uppercase tracking-widest text-primary">
               {category.title}

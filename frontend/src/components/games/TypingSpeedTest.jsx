@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { CodeSnippets } from "../../data/gamesData";
+import Icon from "../Icon";
 
 export default function TypingSpeedTest({ onBack }) {
     const [phase, setPhase] = useState("idle");
@@ -102,12 +103,12 @@ export default function TypingSpeedTest({ onBack }) {
                 onClick={onBack}
                 className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-6 cursor-pointer"
             >
-                <span className="material-symbols-outlined text-sm">arrow_back</span>
+                <Icon name="arrow_back" className="text-sm" />
                 <span className="font-mono text-xs uppercase tracking-wider">Back to Games</span>
             </button>
 
             <div className="flex items-center gap-3 mb-6">
-                <span className="material-symbols-outlined text-primary text-3xl">keyboard</span>
+                <Icon name="keyboard" className="text-primary text-3xl" />
                 <h3 className="font-headline text-2xl font-bold uppercase tracking-wider">
                     Speed_Type
                 </h3>
@@ -119,9 +120,7 @@ export default function TypingSpeedTest({ onBack }) {
 
             {phase === "idle" && (
                 <div className="text-center py-12">
-                    <span className="material-symbols-outlined text-6xl text-primary/30 mb-4 block">
-                        keyboard
-                    </span>
+                    <Icon name="keyboard" className="text-6xl text-primary/30 mb-4 block mx-auto" />
                     <button
                         onClick={startGame}
                         className="bg-primary text-surface-container-lowest font-headline text-sm uppercase tracking-wider px-8 py-3 rounded-sm font-bold hover:bg-primary-dark transition-colors cursor-pointer"

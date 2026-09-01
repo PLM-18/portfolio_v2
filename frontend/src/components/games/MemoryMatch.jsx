@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import Icon from "../Icon";
 
 const TECH_ICONS = [
   { icon: "code", label: "Code" },
@@ -105,12 +106,12 @@ export default function MemoryMatch({ onBack }) {
         onClick={onBack}
         className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-6 cursor-pointer"
       >
-        <span className="material-symbols-outlined text-sm">arrow_back</span>
+        <Icon name="arrow_back" className="text-sm" />
         <span className="font-mono text-xs uppercase tracking-wider">Back</span>
       </button>
 
       <div className="flex items-center gap-3 mb-6">
-        <span className="material-symbols-outlined text-primary text-3xl">grid_view</span>
+        <Icon name="grid_view" className="text-primary text-3xl" />
         <h3 className="font-headline text-2xl font-bold uppercase tracking-wider">
           Memory_Match
         </h3>
@@ -122,9 +123,7 @@ export default function MemoryMatch({ onBack }) {
 
       {phase === "idle" && (
         <div className="text-center py-12">
-          <span className="material-symbols-outlined text-6xl text-primary/30 mb-4 block">
-            grid_view
-          </span>
+          <Icon name="grid_view" className="text-6xl text-primary/30 mb-4 block mx-auto" />
           <button
             onClick={initGame}
             className="bg-primary text-surface-container-lowest font-headline text-sm uppercase tracking-wider px-8 py-3 rounded-sm font-bold hover:bg-primary-dark transition-colors cursor-pointer"
@@ -180,17 +179,13 @@ export default function MemoryMatch({ onBack }) {
                 >
                   {isFlipped ? (
                     <>
-                      <span className="material-symbols-outlined text-2xl md:text-3xl text-primary">
-                        {card.icon}
-                      </span>
+                      <Icon name={card.icon} className="text-2xl md:text-3xl text-primary" />
                       <span className="font-mono text-[8px] uppercase tracking-wider text-on-surface-variant mt-1">
                         {card.label}
                       </span>
                     </>
                   ) : (
-                    <span className="material-symbols-outlined text-2xl text-on-surface-variant/30">
-                      help
-                    </span>
+                    <Icon name="help" className="text-2xl text-on-surface-variant/30" />
                   )}
                 </button>
               );

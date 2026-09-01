@@ -1,3 +1,5 @@
+import Icon from "./Icon";
+
 export default function TopAppBar({ activeSection, onNavClick }) {
   const navItems = [
     { id: "root", label: "Root" },
@@ -12,7 +14,7 @@ export default function TopAppBar({ activeSection, onNavClick }) {
     <header className="fixed top-0 w-full z-50 bg-surface-container-lowest/70 backdrop-blur-xl shadow-2xl shadow-cyan-900/10">
       <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-primary">terminal</span>
+          <Icon name="terminal" className="text-primary text-2xl" />
           <span className="font-headline tracking-widest uppercase text-xl font-bold text-primary">
             PHILEMON PORTFOLIO
           </span>
@@ -35,9 +37,7 @@ export default function TopAppBar({ activeSection, onNavClick }) {
               </button>
             ))}
           </div>
-          <span className="material-symbols-outlined text-primary cursor-pointer active:scale-95 md:hidden">
-            menu
-          </span>
+          <Icon name="menu" className="text-primary text-2xl cursor-pointer active:scale-95 md:hidden" />
         </div>
       </nav>
     </header>

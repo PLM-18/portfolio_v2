@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import Icon from "./Icon";
 
 export default function TerminalCard({ project }) {
   const {
@@ -18,7 +19,12 @@ export default function TerminalCard({ project }) {
   const label = terminalLabel ?? `${title.toLowerCase().replace(/\s+/g, "_")}.sh`;
 
   return (
-    <div className="terminal-glow bg-surface-container-lowest rounded-sm border border-outline-variant/10 overflow-hidden flex flex-col h-full">
+    <div className="group bg-surface-container-lowest/95 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
+      {/* Top glowing accent gradient bar */}
+      <div className="relative w-full h-[3px] bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] blur-[4px] opacity-80" />
+      </div>
+
       <TitleBar label={label} />
 
       {isInteractive ? (
@@ -115,7 +121,7 @@ function IdlePreview({ terminalLines, wsEndpoint, onLaunch }) {
         onClick={onLaunch}
         className="w-full flex items-center justify-center gap-2 border border-primary/30 text-primary font-mono text-xs uppercase tracking-widest py-3 rounded-sm hover:bg-primary/5 active:scale-95 transition-all"
       >
-        <span className="material-symbols-outlined text-sm">play_circle</span>
+        <Icon name="play_circle" className="text-base" />
         Launch Terminal
       </button>
       {!wsEndpoint && (
@@ -214,10 +220,10 @@ function LiveWSTerminal({ wsEndpoint }) {
               line.type === "command"
                 ? "text-on-surface"
                 : line.type === "error"
-                ? "text-error"
-                : line.type === "info"
-                ? "text-on-surface-variant/60"
-                : "text-tertiary-dim"
+                  ? "text-error"
+                  : line.type === "info"
+                    ? "text-on-surface-variant/60"
+                    : "text-tertiary-dim"
             }
           >
             {line.text}
@@ -248,7 +254,7 @@ function LiveWSTerminal({ wsEndpoint }) {
             className="text-on-surface-variant/40 hover:text-error transition-colors"
             title="Disconnect"
           >
-            <span className="material-symbols-outlined text-sm">close</span>
+            <Icon name="close" className="text-sm" />
           </button>
         )}
       </form>
@@ -286,17 +292,17 @@ const MOCK_EMAILS = [
 const L = (text, cls = "out") => ({ text, cls });
 
 const CLS_MAP = {
-  c:   "text-cyan-400",
-  g:   "text-emerald-400",
-  gl:  "text-emerald-300/60",
-  y:   "text-yellow-400",
-  p:   "text-yellow-300",
-  s:   "text-on-surface-variant/70",
-  i:   "text-on-surface-variant/50",
-  b:   "text-blue-400",
-  m:   "text-purple-400",
+  c: "text-cyan-400",
+  g: "text-emerald-400",
+  gl: "text-emerald-300/60",
+  y: "text-yellow-400",
+  p: "text-yellow-300",
+  s: "text-on-surface-variant/70",
+  i: "text-on-surface-variant/50",
+  b: "text-blue-400",
+  m: "text-purple-400",
   out: "text-on-surface",
-  e:   "text-on-surface/40",
+  e: "text-on-surface/40",
   err: "text-error",
 };
 
@@ -620,7 +626,7 @@ function TerminalFooter({ title, subtitle, description, repo, tags }) {
           rel="noreferrer"
           className="inline-flex items-center gap-2 font-label text-xs font-bold uppercase tracking-widest text-primary hover:gap-4 transition-all"
         >
-          View Repo <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          View Repo <Icon name="arrow_forward" className="text-sm" />
         </a>
       )}
     </div>
