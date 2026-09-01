@@ -17,7 +17,7 @@ export default function ProjectCard({ project }) {
   };
 
   return (
-    <div className="project-card-glow group bg-surface-container/90 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
+    <div className="group bg-surface-container/90 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
       {/* Top glowing accent gradient bar*/}
       <div className="relative w-full h-[3px] bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] shrink-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] blur-[4px] opacity-80" />

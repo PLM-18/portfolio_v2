@@ -19,8 +19,8 @@ export default function TerminalCard({ project }) {
   const label = terminalLabel ?? `${title.toLowerCase().replace(/\s+/g, "_")}.sh`;
 
   return (
-    <div className="project-card-glow group bg-surface-container-lowest/95 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
-      {/* Top glowing accent gradient bar matching image.png */}
+    <div className="group bg-surface-container-lowest/95 backdrop-blur-md rounded-xl border border-white/10 hover:border-sky-400/40 overflow-hidden transition-all duration-300 flex flex-col h-full shadow-xl shadow-black/40">
+      {/* Top glowing accent gradient bar */}
       <div className="relative w-full h-[3px] bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] shrink-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#38bdf8] via-[#fbbf24] to-[#34d399] blur-[4px] opacity-80" />
       </div>
@@ -220,10 +220,10 @@ function LiveWSTerminal({ wsEndpoint }) {
               line.type === "command"
                 ? "text-on-surface"
                 : line.type === "error"
-                ? "text-error"
-                : line.type === "info"
-                ? "text-on-surface-variant/60"
-                : "text-tertiary-dim"
+                  ? "text-error"
+                  : line.type === "info"
+                    ? "text-on-surface-variant/60"
+                    : "text-tertiary-dim"
             }
           >
             {line.text}
@@ -292,17 +292,17 @@ const MOCK_EMAILS = [
 const L = (text, cls = "out") => ({ text, cls });
 
 const CLS_MAP = {
-  c:   "text-cyan-400",
-  g:   "text-emerald-400",
-  gl:  "text-emerald-300/60",
-  y:   "text-yellow-400",
-  p:   "text-yellow-300",
-  s:   "text-on-surface-variant/70",
-  i:   "text-on-surface-variant/50",
-  b:   "text-blue-400",
-  m:   "text-purple-400",
+  c: "text-cyan-400",
+  g: "text-emerald-400",
+  gl: "text-emerald-300/60",
+  y: "text-yellow-400",
+  p: "text-yellow-300",
+  s: "text-on-surface-variant/70",
+  i: "text-on-surface-variant/50",
+  b: "text-blue-400",
+  m: "text-purple-400",
   out: "text-on-surface",
-  e:   "text-on-surface/40",
+  e: "text-on-surface/40",
   err: "text-error",
 };
 
