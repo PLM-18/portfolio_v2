@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { certifications, education, profile, projects, skillCategories } from './data/portfolioData'
 import { useSound } from './hooks/useSound'
+import GameRoom from './GameRoom'
+import './room.css'
 
 const base = import.meta.env.BASE_URL
 const tabs = { home: 'Home', projects: 'Projects', about: 'About', contact: 'Contact' }
@@ -11,7 +13,7 @@ const tiles = {
   gallery: ['photo_library', 'Memory wall', 'Photos, GIFs and clips', 'purple'],
   tools: ['terminal', 'Dev toolkit', 'Languages and tools', 'blue'],
 }
-const panels = { ...tabs, pit: 'Pit lane', gallery: 'Memory wall', tools: 'Dev toolkit', credits: 'Model credits' }
+const panels = { ...tabs, pit: 'Pit lane', gallery: 'Memory wall', tools: 'Dev toolkit', credits: 'Model credits', map: 'Map' }
 
 function Icon({ name }) {
   return <span aria-hidden="true" className="material-symbols-outlined">{name}</span>
@@ -165,6 +167,10 @@ function PanelContent({ panel }) {
       <p><a href={base + 'Resume.pdf'} target="_blank" rel="noreferrer">Résumé (PDF)</a></p>
       {certifications.map(item => <p key={item.id}><a href={item.credentialUrl} target="_blank" rel="noreferrer">{item.title} · {item.issuer}</a></p>)}
     </>
+    case 'map': return <>
+      <p>{profile.location}</p>
+      <p><a href={'https://www.openstreetmap.org/search?query=' + encodeURIComponent(profile.location)} target="_blank" rel="noreferrer">Explore Pretoria on OpenStreetMap</a></p>
+    </>
     case 'credits': return <div className="panel-grid">
       <article className="project">
         <h3><a href="https://sketchfab.com/3d-models/xbox-elite-d93405595eea48a483eb57ae10eceb20">Xbox Elite controller</a></h3>
@@ -189,6 +195,8 @@ function PanelContent({ panel }) {
 
 export default function App() {
   const [panel, setPanel] = useState(readPanel)
+  const [phase, setPhase] = useState('loading')
+  const entered = phase === 'menu'
   const [day, setDay] = useState(false)
   const [order, setOrder] = useState(readTiles)
   const [dragging, setDragging] = useState(null)
@@ -202,9 +210,9 @@ export default function App() {
   }, [])
   useEffect(() => {
     const node = dialog.current
-    if (panel !== 'home' && !node.open) node.showModal()
+    if (entered && panel !== 'home' && !node.open) node.showModal()
     if (panel === 'home' && node.open) node.close()
-  }, [panel])
+  }, [panel, entered])
   useEffect(() => {
     try { localStorage.setItem('portfolio-tiles', JSON.stringify(order)) } catch { /* Storage is optional. */ }
   }, [order])
@@ -225,14 +233,8 @@ export default function App() {
       return next
     })
   }
-  function tilt(event) {
-    const bounds = event.currentTarget.getBoundingClientRect()
-    event.currentTarget.style.setProperty('--tilt-x', ((event.clientX - bounds.left) / bounds.width - .5) * 14 + 'px')
-    event.currentTarget.style.setProperty('--tilt-y', ((event.clientY - bounds.top) / bounds.height - .5) * 10 + 'px')
-  }
-
   return <div className={`site ${day ? 'day' : 'night'}`}>
-    <header className="topbar shell">
+    {entered && <header className="topbar shell">
       <a href="#home" className="brand"><span className="brand-icon"><Icon name="stadia_controller" /></span><span>PHILEMON<span className="brand-sub">.DEV</span></span></a>
       <nav aria-label="Main navigation">{Object.entries(tabs).map(([key, label]) => <a key={key} href={'#' + key}
         aria-current={key === panel ? 'page' : undefined} onClick={() => sound.cue()}>{label}</a>)}</nav>
@@ -240,35 +242,13 @@ export default function App() {
         <button className="icon-button" aria-label={day ? 'Switch to night' : 'Switch to day'} onClick={switchMode}><Icon name={day ? 'light_mode' : 'dark_mode'} /></button>
         <button className="icon-button" aria-label="Sound" aria-pressed={sound.enabled} onClick={sound.toggle}><Icon name={sound.enabled ? 'volume_up' : 'volume_off'} /></button>
       </div>
-    </header>
+    </header>}
 
-    <main className="shell">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="intro">
-          <p className="eyebrow hero-label"><span className="signal" /> PLAYER 01 <span className="label-divider" /> DEVELOPER PORTFOLIO</p>
-          <h1 id="hero-title">Philemon<br /><em>Muleya.</em></h1>
-          <p className="hero-description">Aspiring software engineer. Into full-stack development, systems and games.</p>
-          <div className="hero-actions">
-            <button className="primary" onClick={() => activate('projects')}><Icon name="play_arrow" /> Explore projects</button>
-            <button className="secondary" onClick={() => activate('about')}>About me</button>
-          </div>
-          <p className="location"><Icon name="location_on" /> {profile.location}</p>
-        </div>
-        <div className="stage" onPointerMove={tilt} onPointerLeave={event => {
-          event.currentTarget.style.removeProperty('--tilt-x')
-          event.currentTarget.style.removeProperty('--tilt-y')
-        }}>
-          <div className="stage-grid" aria-hidden="true" />
-          <div className="stage-rings" aria-hidden="true" />
-          <div className="stage-header"><span><i /> THE SETUP</span><span>{day ? 'DAY MODE' : 'NIGHT MODE'}</span></div>
-          <div className="hardware-layer">
-            <Hardware type="console" model="xbox_series_x_console.glb" icon="developer_board" day={day} label="Switch lighting" onActivate={switchMode} />
-            <Hardware type="controller" model="xbox_elite.glb" icon="sports_esports" day={day} label="Open projects" onActivate={() => activate('projects')} />
-          </div>
-          <div className="stage-footer"><Icon name="touch_app" /> Select an object to interact</div>
-        </div>
-      </section>
+    <main className={entered ? 'shell' : phase === 'start' ? 'shell room-entry' : undefined}>
+      <GameRoom phase={phase} setPhase={setPhase} day={day} switchMode={switchMode} activate={activate} sound={sound}
+        consoleModel={<Hardware type="console" model="xbox_series_x_console.glb" icon="developer_board" day={day} label="Switch lighting" onActivate={switchMode} />} />
 
+      {entered && <>
       <section className="dashboard" aria-labelledby="dashboard-title">
         <div className="section-heading">
           <div><p className="eyebrow">QUICK ACCESS</p><h2 id="dashboard-title">The dashboard</h2></div>
@@ -302,17 +282,18 @@ export default function App() {
         <div className={`equalizer ${sound.playing ? 'playing' : ''}`} aria-hidden="true">{[10, 18, 13, 23, 16, 9].map((height, index) =>
           <i key={index} style={{ height, animationDelay: index * -.12 + 's' }} />)}</div>
       </section>
+      </>}
     </main>
 
-    <footer className="shell footer">
+    {entered && <footer className="shell footer">
       <span>© {new Date().getFullYear()} {profile.name}</span>
       <div><a href={profile.github}>GitHub</a><a href={profile.linkedin}>LinkedIn</a><a href={base + 'Resume.pdf'}>Résumé</a><a href="#credits">Model credits</a></div>
-    </footer>
+    </footer>}
 
     <dialog ref={dialog} className="panel" aria-labelledby="panel-title"
       onCancel={event => { event.preventDefault(); activate('home') }}
       onClick={event => { if (event.target === event.currentTarget) activate('home') }}>
-      {panel !== 'home' && <div className="panel-inner" key={panel}>
+      {entered && panel !== 'home' && <div className="panel-inner" key={panel}>
         <header className="panel-header"><h2 id="panel-title">{panels[panel]}</h2><button className="icon-button" aria-label="Close panel" onClick={() => activate('home')}><Icon name="close" /></button></header>
         <PanelContent panel={panel} />
       </div>}
