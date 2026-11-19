@@ -2,7 +2,7 @@
 export const profile = {
   name: "Philemon Muleya",
   tagline: "Aspiring Software Engineer.",
-  bio: "BSc Information and Knowledge Systems graduate student at the University of Pretoria, specializing in Computer Science and Software Development. Building scalable, secure and efficient systems - from modern React interfaces to low-level networking tools in Go, Java and C++.",
+  bio: "",
   email: "u23629810@tuks.co.za",
   phone: "067 127 2394",
   github: "https://github.com/PLM-18",
